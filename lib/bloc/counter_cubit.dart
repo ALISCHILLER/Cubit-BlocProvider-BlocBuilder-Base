@@ -2,15 +2,24 @@
 import 'package:bloc/bloc.dart';
 
 
-class CounterCubit extends Cubit<int>{
-  CounterCubit(super.initialState);
 
+/// کلاس CounterCubit برای مدیریت وضعیت شمارنده استفاده می‌شود.
+/// این کلاس از Cubit استفاده می‌کند که بخشی از کتابخانه BLoC است و برای مدیریت وضعیت طراحی شده است.
+/// نوع وضعیت (`int`) مشخص شده است، بنابراین شمارنده یک عدد صحیح خواهد بود.
+class CounterCubit extends Cubit<int> {
+  /// سازنده کلاس CounterCubit که مقدار اولیه وضعیت را دریافت می‌کند.
+  CounterCubit(int initialState) : super(initialState);
 
-  void increase(){
-    emit(state + 1);
+  /// متد increase برای افزایش مقدار شمارنده استفاده می‌شود.
+  /// این متد وضعیت فعلی (state) را یک واحد افزایش داده و آن را انتشار (emit) می‌دهد.
+  void increase() {
+    emit(state + 1); // وضعیت جدید برابر با مقدار فعلی به‌علاوه 1
   }
 
-  void decrease(){
-    emit(state - 1);
+  /// متد decrease برای کاهش مقدار شمارنده استفاده می‌شود.
+  /// این متد وضعیت فعلی (state) را یک واحد کاهش داده و آن را انتشار (emit) می‌دهد.
+  void decrease() {
+    // if (state > 0)         /// کاهش مقدار شمارنده، در صورتی که مقدار بیشتر از صفر باشد.
+    emit(state - 1); // وضعیت جدید برابر با مقدار فعلی منهای 1
   }
 }
