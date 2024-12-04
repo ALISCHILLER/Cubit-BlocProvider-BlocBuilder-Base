@@ -19,6 +19,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           // ساختار ستونی برای چینش عناصر
+
           mainAxisAlignment: MainAxisAlignment.center,
           // قرار دادن محتوا در مرکز صفحه
           children: [

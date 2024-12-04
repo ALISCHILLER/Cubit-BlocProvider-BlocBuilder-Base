@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
+
       create: (_) => CounterCubit(3), // ایجاد نمونه‌ای از CounterCubit با مقدار اولیه 3
       child: const HomePage(), // استفاده از صفحه HomePage به‌عنوان فرزند BlocProvider
     );

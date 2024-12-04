@@ -8,7 +8,9 @@ import 'package:bloc/bloc.dart';
 /// نوع وضعیت (`int`) مشخص شده است، بنابراین شمارنده یک عدد صحیح خواهد بود.
 class CounterCubit extends Cubit<int> {
   /// سازنده کلاس CounterCubit که مقدار اولیه وضعیت را دریافت می‌کند.
+
   CounterCubit(int initialState) : super(initialState);
+
 
   /// متد increase برای افزایش مقدار شمارنده استفاده می‌شود.
   /// این متد وضعیت فعلی (state) را یک واحد افزایش داده و آن را انتشار (emit) می‌دهد.
