@@ -9,6 +9,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // با استفاده از context.watch وضعیت فعلی (state) را از CounterCubit دریافت می‌کنیم
+   // var state = context.watch<CounterCubit>().state;
+
     // متد build که ظاهر صفحه را تعریف می‌کند
     return Scaffold(
       appBar: AppBar(
@@ -23,6 +27,31 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           // قرار دادن محتوا در مرکز صفحه
           children: [
+            Builder(
+              builder: (context) {
+                // با استفاده از context.watch وضعیت فعلی (state) را از CounterCubit دریافت می‌کنیم
+                var state = context.watch<CounterCubit>().state;
+
+                // بازگرداندن ویجت Text برای نمایش مقدار شمارنده
+                return Text(
+                  state.toString(), // نمایش مقدار شمارنده در قالب متن
+                  style: const TextStyle(
+                    fontSize: 40, // تنظیم اندازه متن به 40
+                    fontWeight: FontWeight.bold, // نمایش متن به صورت ضخیم (Bold)
+                    color: Colors.blue, // تنظیم رنگ متن به آبی
+                  ),
+                );
+              },
+            ),
+            // Text(
+            //   state.toString(), // نمایش مقدار شمارنده در قالب متن
+            //   style: const TextStyle(
+            //     fontSize: 40, // تنظیم اندازه متن به 40
+            //     fontWeight: FontWeight.bold, // تنظیم متن به صورت ضخیم
+            //     color: Colors.blue, // تنظیم رنگ متن به آبی
+            //   ),
+            // ),
+
             // BlocListener<CounterCubit, int>(
             //   // BlocListener برای گوش دادن به تغییرات وضعیت و اجرای یک عملیات جانبی استفاده می‌شود.
             //   listener: (context, state) {
@@ -38,31 +67,50 @@ class HomePage extends StatelessWidget {
             //   // `child` ویجتی است که داخل BlocListener قرار دارد و نمایش داده می‌شود.
             //   // در اینجا به صورت پیش‌فرض یک `Container` خالی قرار داده شده است.
             // ),
-            BlocConsumer<CounterCubit, int>(
-              // BlocConsumer همزمان هم برای گوش دادن به تغییرات وضعیت (listener) و
-              // هم برای بازسازی ویجت‌ها (builder) استفاده می‌شود.
-              listener: (context, state) {
-                // این متد هر بار که وضعیت (state) تغییر کند، اجرا می‌شود.
-                ScaffoldMessenger.of(context)
-                // پیام SnackBar برای نمایش یک پیغام موقت به کاربر
-                    .showSnackBar(const SnackBar(
-                  // محتوای پیام که به کاربر نمایش داده می‌شود
-                  content: Text("test"),
-                ));
-              },
-              builder: (context, state) {
-                // متد builder هنگام تغییر وضعیت فراخوانی می‌شود
-                // و وظیفه دارد رابط کاربری را بازسازی کند.
-                return Text(
-                  state.toString(), // نمایش مقدار شمارنده در قالب متن
-                  style: const TextStyle(
-                    fontSize: 40, // تنظیم اندازه متن به 40
-                    fontWeight: FontWeight.bold, // تنظیم متن به صورت ضخیم
-                    color: Colors.blue, // تنظیم رنگ متن به آبی
-                  ),
-                );
-              },
-            ),
+            // BlocConsumer<CounterCubit, int>(
+            //
+            //   buildWhen: (previous, current) {
+            //     // بررسی وضعیت جدید (current) برای بازسازی ویجت
+            //     // اگر مقدار جدید برابر با 3 باشد، بازسازی ویجت انجام شود
+            //     if (current > 5) return true;
+            //
+            //     // در غیر این صورت، بازسازی ویجت انجام نشود
+            //     return false;
+            //   },
+            //
+            //   listenWhen: (previous, current) {
+            //     // بررسی وضعیت جدید (current)
+            //     // اگر مقدار جدید برابر با 3 باشد، تغییر وضعیت پردازش شود
+            //     if (current == 3) return true;
+            //
+            //     // در غیر این صورت، تغییر وضعیت نادیده گرفته شود
+            //     return false;
+            //   },
+            //
+            //   // BlocConsumer همزمان هم برای گوش دادن به تغییرات وضعیت (listener) و
+            //   // هم برای بازسازی ویجت‌ها (builder) استفاده می‌شود.
+            //   listener: (context, state) {
+            //     // این متد هر بار که وضعیت (state) تغییر کند، اجرا می‌شود.
+            //     ScaffoldMessenger.of(context)
+            //         // پیام SnackBar برای نمایش یک پیغام موقت به کاربر
+            //         .showSnackBar(const SnackBar(
+            //       // محتوای پیام که به کاربر نمایش داده می‌شود
+            //       content: Text("test"),
+            //     ));
+            //   },
+            //   builder: (context, state) {
+            //     // متد builder هنگام تغییر وضعیت فراخوانی می‌شود
+            //     // و وظیفه دارد رابط کاربری را بازسازی کند.
+            //     return Text(
+            //       state.toString(), // نمایش مقدار شمارنده در قالب متن
+            //       style: const TextStyle(
+            //         fontSize: 40, // تنظیم اندازه متن به 40
+            //         fontWeight: FontWeight.bold, // تنظیم متن به صورت ضخیم
+            //         color: Colors.blue, // تنظیم رنگ متن به آبی
+            //       ),
+            //     );
+            //   },
+            // ),
 
             // BlocBuilder<CounterCubit, int>(
             //   builder: (context, state) {
@@ -77,7 +125,8 @@ class HomePage extends StatelessWidget {
             //     );
             //   },
             // ),
-            const SizedBox(height: 20), // فاصله بین متن و دکمه‌ها
+            const SizedBox(height: 20),
+            // فاصله بین متن و دکمه‌ها
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               // چینش دکمه‌ها در مرکز
